@@ -1,0 +1,82 @@
+<div class="container-fluid">
+    <app-page-title title="Empréstimo" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Meus Empréstimos</h4>
+
+                    <form [formGroup]="emprestimoForm">
+                        <div class="row">
+                            <div class="col-lg-12">
+                              <div class="card bg-transparent">
+                                <div class=" card-body">
+                                  <div class=" row mb-2">
+                                    <div class="col-sm">
+                                      <div class="search-box me-2 d-inline-block">
+                                        <div class="position-relative">
+                                          <input type="text" class="form-control" autocomplete="off" id="searchTableList" placeholder="Pesquisar...">
+                                          <i class="bx bx-search-alt search-icon"></i>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <!-- end col -->                                  
+                                    <!-- end col -->
+                                  </div>
+                                  <!-- end row -->
+                                  <div class>
+                                    <div class="table-responsive">
+                                      <table class="table project-list-table align-middle table-nowrap dt-responsive nowrap w-100 table-borderless" id="projectList-table">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col" style="width: 100px">#</th>
+                                            <th scope="col">Valor</th>
+                                            <th scope="col">Data</th>
+                                            <th scope="col">Parcela</th>
+                                            <th scope="col">Progresso</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Ações</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let emprestimo of meusemprestimos; let i = index">                                               
+                                                <td>{{ emprestimo.id }}</td>
+                                                <td>{{ formatarComoReal(emprestimo.valor) }}</td>
+                                                <td>{{ emprestimo.dataCadastro | date:'dd/MM/yyyy HH:mm' }}</td>
+                                                <td>{{ emprestimo.quantidadeParcelas }}x de {{ formatarComoReal(emprestimo.valorParcela) }}</td>
+                                                <td>1 / {{ emprestimo.quantidadeParcelas }}</td>
+                                                <td>
+                                                  <span class="badge" [ngClass]="{
+                                                    'bg-success': emprestimo.emprestimoStatusId == 4,
+                                                    'bg-warning': emprestimo.emprestimoStatusId == 1,
+                                                    'bg-info': emprestimo.emprestimoStatusId == 3,
+                                                    'bg-danger': emprestimo.emprestimoStatusId == 5
+                                                  }">{{ getStatusDescricao(emprestimo.emprestimoStatusId) }}</span>
+                                                </td>                                                
+                                                <td><i class="bx bxs-file-pdf bx-sm"></i></td>
+                                              </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- end row -->
+                              <!-- <div class="row">
+                                <div class="col-lg-12">
+                                  <ul class="pagination pagination-rounded justify-content-center mt-2 mb-5">
+                                    <pagination class="pagination-wrap hstack gap-2" [totalItems]="returnedArray?.length" [itemsPerPage]="6" (pageChanged)="pageChanged($event)"></pagination>
+                                  </ul>
+                                </div>
+                              </div> -->
+                              <!-- end row -->
+                        
+                            </div>
+                          </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

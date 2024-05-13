@@ -1,0 +1,90 @@
+<div class="container-fluid">
+  <app-page-title title="Dashboard" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+
+  <div class="row">
+    <div class="col-12">
+      <div ngClass="card">
+        <div class="card-body border-bottom">
+          <div class="d-flex align-items-center">
+            <h5 class="mb-0 card-title flex-grow-1">Listagem de Funcionários</h5>
+           
+            <div class="col-sm-auto">
+              <div class="text-sm-end">
+                <a (click)="novoFuncionario()" class="btn btn-success btn-rounded me-2" id="addProject-btn"><i class="mdi mdi-plus me-1"></i>Novo Funcionário</a>
+                <div class="dropdown d-inline-block" dropdown>
+                  <button type="button" class="btn btn-primary dropdown-toggle" dropdownToggle data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-folder"></i> <i class="mdi mdi-chevron-down ms-1"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu dropdown-menu-end show" aria-labelledby="*dropdownMenuButton1" *dropdownMenu>
+                    <li><a class="dropdown-item" (click)="uploadFuncionario()" >Subir planilha de funcionários</a></li>                    
+                  </ul>
+                </div>
+
+                
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <div class="card-body border-bottom">
+          <div class="row g-3">
+            <div class="col-xxl-10 col-lg-8">
+              <input type="search" class="form-control" id="searchInput" placeholder="Pesquisar por nome..." [(ngModel)]="term" (ngModelChange)="searchfuncionario()">
+            </div>
+            <div class="col-xxl-2 col-lg-4">
+              <button type="button" class="btn btn-soft-secondary w-100" (click)="load();"><i class="mdi mdi-filter-outline align-middle"></i> Filtrar</button>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+
+          <div class="table-responsive">
+            <table class="table align-middle dt-responsive nowrap w-100 table-check" id="job-list">
+              <thead>
+                <tr>
+                  <th scope="col">id</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">CPF</th>
+                  <th scope="col">RG</th>
+                  <th scope="col">PIS</th>
+                  <th scope="col">Data Nascimento</th>
+                  <th scope="col">Sexo</th>
+                  <th scope="col">Cargo</th>
+                  <th scope="col">Score Funcionário</th>
+                  <th scope="col">Data Admissão</th>
+                  <th scope="col">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                <tr *ngFor="let data of lists; let i = index">
+                  <th scope="row">{{data.id}}</th>
+                  <td>{{data.nome}}</td>
+                  <td>{{data.cpf}}</td>
+                  <td>{{data.rg}}</td>
+                  <td>{{data.pis}}</td>
+                  <td>{{ data.dataNascimento | date:'dd/MM/yyyy' }}</td>
+                  <td>{{data.sexo}}</td>
+                  <td>{{data.Cargo}}</td>
+                  <td>{{data.ScoreFuncionario}}</td>
+                  <td>{{ data.dataAdmissao | date:'dd/MM/yyyy' }}</td>
+                  <td>
+                    <ul class="list-unstyled hstack gap-1 mb-0">                    
+                      <li data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                        <a href="javascript:void(0);" class="btn btn-sm btn-soft-info" (click)="editDataGet(data.id,content)"><i class="mdi mdi-pencil-outline"></i></a>
+                      </li>
+                      <li data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                        <a href="javascript:void(0);" data-bs-toggle="modal" class="btn btn-sm btn-soft-danger" (click)="delete($event,data.id)"><i class="mdi mdi-delete-outline"></i></a>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>         
+          <!--end row-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

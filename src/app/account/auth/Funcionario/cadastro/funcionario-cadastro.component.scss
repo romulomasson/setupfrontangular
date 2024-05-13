@@ -1,0 +1,30 @@
+
+.skeleton-loading {
+    // width: 100%;
+    height: 1.5em; /* altura aproximada do texto */
+    background-color: #f0f0f0; /* cor de fundo */
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .skeleton-text {
+    width: 50%; /* largura aproximada do texto */
+    height: 100%;
+    background-color: #e0e0e0; /* cor do texto */
+    position: absolute;
+    animation: skeleton-loading-animation 1s infinite linear; /* animação */
+  }
+  
+  .content {
+    /* Estilos do conteúdo quando carregado */
+  }
+  
+  @keyframes skeleton-loading-animation {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  

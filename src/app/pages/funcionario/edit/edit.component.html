@@ -1,0 +1,226 @@
+<div class="container-fluid">
+    <app-page-title title="Funcionários" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Inserir novo funcionário</h4>
+
+                    <form [formGroup]="funcionarioForm">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label for="nomefuncionario">Nome<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="nomefuncionario"
+                                        formControlName="nomefuncionario" placeholder="Nome"  maxlength="100"
+                                        [ngClass]="{'is-invalid': submit && form.nomefuncionario.errors}">
+                                    @if(submit && form.nomefuncionario.errors){
+                                    <div class="invalid-feedback">
+                                        @if(form.nomefuncionario.errors.required){
+                                        <span>Nome é obrigatório.</span>}
+                                    </div>}
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="mb-3">
+                                    <label for="formrow-firstname-input">CPF<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="cpf"
+                                        placeholder="CPF" mask="000.000.000-00" data-reverse="true"  formControlName="cpf"
+                                        [ngClass]="{'is-invalid': submit && form.cpf.errors}">
+                                        @if(submit && form.cpf.errors){
+                                            <div class="invalid-feedback">
+                                                @if(form.cpf.errors.required){
+                                                <span>CPF é obrigatório.</span>}
+                                            </div>}
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="mb-3">
+                                    <label for="formrow-firstname-input">RG<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="rg"
+                                        placeholder="RG"  formControlName="rg" mask="00.000.000-0"
+                                        [ngClass]="{'is-invalid': submit && form.rg.errors}">
+                                        @if(submit && form.rg.errors){
+                                            <div class="invalid-feedback">
+                                                @if(form.rg.errors.required){
+                                                <span>RG é obrigatório.</span>}
+                                            </div>}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="mb-3">
+                                    <label for="formrow-firstname-input">Nº PIS</label>
+                                    <input type="text" class="form-control" id="numeroPIS"
+                                        placeholder="Número do PIS"  formControlName="numeroPIS" mask="000.00000.00-0">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="mb-3">
+                                    <label for="formrow-firstname-input">Sexo<span class="text-danger">*</span></label>
+                                    <select class="form-select" formControlName="sexo"
+                                    [ngClass]="{'is-invalid': submit && form.sexo.errors}">
+                                        <option>Masculino</option>
+                                        <option>Feminino</option>
+                                    </select>
+                                    @if(submit && form.sexo.errors){
+                                        <div class="invalid-feedback">
+                                            @if(form.sexo.errors.required){
+                                            <span>Sexo é obrigatório.</span>}
+                                        </div>}
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="mb-3">
+                                    <label for="formrow-firstname-input">Data de Nascimento<span
+                                            class="text-danger">*</span></label>
+                                    <input class="form-control" type="date" value="1990-01-01" id="dataNascimento" formControlName="dataNascimento"
+                                    [ngClass]="{'is-invalid': submit && form.dataNascimento.errors}">
+                                    @if(submit && form.dataNascimento.errors){
+                                        <div class="invalid-feedback">
+                                            @if(form.dataNascimento.errors.required){
+                                            <span>Data de Nascimento é obrigatório.</span>}
+                                        </div>}
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="mb-3">
+                                    <label for="formrow-firstname-input">Data de Admissão<span
+                                            class="text-danger">*</span></label>
+                                    <input class="form-control" type="date" value="2024-01-01" id="dataAdmissao" formControlName="dataAdmissao"
+                                    [ngClass]="{'is-invalid': submit && form.dataAdmissao.errors}">
+                                    @if(submit && form.dataAdmissao.errors){
+                                        <div class="invalid-feedback">
+                                            @if(form.dataAdmissao.errors.required){
+                                            <span>Data de Admissão é obrigatório.</span>}
+                                        </div>}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-1">
+                                <div class="mb-1">
+                                    <label for="formrow-firstname-input">Salário Liquido<span
+                                        class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="formrow-firstname-input"
+                                        placeholder="" formControlName="salarioLiquido"  mask="separator.2" thousandSeparator="." decimalSeparator=","
+                                        [ngClass]="{'is-invalid': submit && form.salarioLiquido.errors}">
+                                        @if(submit && form.salarioLiquido.errors){
+                                            <div class="invalid-feedback">
+                                                @if(form.salarioLiquido.errors.required){
+                                                <span>Salario Liquido é obrigatório.</span>}
+                                            </div>}
+                                </div>
+                            </div>
+                            <div class="col-lg-1">
+                                <div class="mb-1">
+                                    <label for="formrow-firstname-input">Salário Bruto<span
+                                        class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="formrow-firstname-input"
+                                        placeholder="" formControlName="salarioBruto"  mask="separator.2" thousandSeparator="." decimalSeparator=","
+                                        [ngClass]="{'is-invalid': submit && form.salarioBruto.errors}">
+                                        @if(submit && form.salarioBruto.errors){
+                                            <div class="invalid-feedback">
+                                                @if(form.salarioBruto.errors.required){
+                                                <span>Salario Bruto é obrigatório.</span>}
+                                            </div>}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-1">
+                                <div class="mb-1">
+                                    <label for="formrow-firstname-input">Dependentes</label>
+                                    <input type="text" class="form-control" id="formrow-firstname-input"
+                                        placeholder="" formControlName="quantidadeDependentes" mask="0">
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="mb-3">
+                                    <label for="formrow-firstname-input">Cargo</label>
+                                    <select class="form-select"  formControlName="cargo">
+                                        <option value="1">Analista de Recursos Humanos</option>
+                                        <option value="2">Analista Financeiro</option>
+                                        <option value="3">Desenvolvedor de Software</option>
+                                        <option value="4">Gerente de Projeto</option>
+                                        <option value="5">Coordenador de Marketing</option>
+                                        <option value="6">Designer Gráfico</option>
+                                        <option value="7">Analista de Vendas</option>
+                                        <option value="Outro">Outro</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="mb-3">
+                                    <label for="formrow-firstname-input">Ocupação</label>
+                                    <select class="form-select" formControlName="codigoOcupacao">
+                                        <option value="1">Engenheiro</option>
+                                        <option value="2">Médico</option>
+                                        <option value="3">Advogado</option>
+                                        <option value="4">Professor</option>
+                                        <option value="5">Programador</option>
+                                        <option value="6">Analista</option>
+                                        <option value="7">Outro</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="mb-3">
+                                    <label for="formrow-firstname-input">Formação Academica</label>
+                                    <select class="form-select" formControlName="formacaoAcedemica">
+                                        <option value="1">Ensino Médio Incompleto</option>
+                                        <option value="2">Ensino Médio Completo</option>
+                                        <option value="3">Graduação Incompleta</option>
+                                        <option value="4">Graduação Completa</option>
+                                        <option value="5">Pós-Graduação</option>
+                                        <option value="6">Mestrado</option>
+                                        <option value="7">Doutorado</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="mb-3">
+                                    <label for="formrow-firstname-input">Email<span
+                                        class="text-danger">*</span></label>
+                                    <input class="form-control" type="email" id="email" formControlName="email"
+                                    [ngClass]="{'is-invalid': submit && form.email.errors}">
+                                    @if(submit && form.email.errors){
+                                        <div class="invalid-feedback">
+                                            @if(form.email.errors.required){
+                                            <span>Email é obrigatório.</span>}
+                                        </div>}
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3">
+                                <div class="mb-3">
+                                    <label for="formrow-firstname-input">Data Última Férias</label>
+                                    <input class="form-control" type="date" value="2024-01-01" id="dataUltimaFerias" formControlName="dataUltimaFerias">
+                                </div>
+                            </div>
+                           
+                        </div>
+
+                        <div class="col-lg-12 d-flex justify-content-between">
+                            <div class="mb-6">
+                                <button type="submit" (click)="cancelar()" class="btn btn-light">Cancelar</button>
+                            </div>
+                            <div class="mb-6">
+                                <button type="submit" (click)="salvar()" class="btn btn-primary">Salvar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

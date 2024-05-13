@@ -1,0 +1,328 @@
+<div class="container-fluid">
+    <app-page-title title="Contratar" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+    <form [formGroup]="emprestimoForm">
+        <div class="checkout-tabs">
+            <div class="row">
+                <div class="col-xl-12">
+                    <tabset [vertical]="true" class="nav-pills flex-column ecommerce-checkout-tab">
+                        <tab [id]="'informacoesBancarias'" [disabled]="!activeInformacaoBancaria"
+                            (selectTab)="activeInformacaoBancaria" [active]="activeInformacaoBancaria">
+                            <ng-template tabHeading>
+                                <i class="bx bx-money d-block check-nav-icon mt-4 mb-2"></i>
+                                <p class="fw-bold mb-4">Informações Bancárias</p>
+                            </ng-template>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Informações para receber o empréstimo</h4>
+                                    <p class="card-title-desc">Preencha todas as informações abaixo</p>
+                                    <label>Banco:</label>
+
+                                    <div class="row">
+                                        <div class="col-xl-2 col-sm-4">
+                                            <div class="mb-3">
+                                                <label class="card-radio-label mb-2">
+                                                    <input type="radio" name="currency" id="pinbank" value="529"
+                                                        class="card-radio-input"
+                                                        (change)="onRadioChange(529,'Pinbank' , false, true)">
+                                                    <div class="card-radio d-flex flex-column align-items-center">
+                                                        <img src="assets/images/logos/pinbank.png" class="img-fluid"
+                                                            alt="Pinbank">
+                                                        <span>Pinbank</span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-2 col-sm-4">
+                                            <div class="mb-3">
+                                                <label class="card-radio-label mb-2">
+                                                    <input type="radio" name="currency" id="itau"
+                                                        class="card-radio-input"
+                                                        (change)="onRadioChange(431,'Itaú', false, false)">
+                                                    <div class="card-radio d-flex flex-column align-items-center">
+                                                        <img src="assets/images/logos/itau.svg" class="img-fluid"
+                                                            alt="Itau">
+                                                        <span>Itaú</span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-2 col-sm-4">
+                                            <div class="mb-3">
+                                                <label class="card-radio-label mb-2">
+                                                    <input type="radio" name="currency" id="bradesco"
+                                                        class="card-radio-input"
+                                                        (change)="onRadioChange(237,'Bradesco',false, false)">
+                                                    <div class="card-radio d-flex flex-column align-items-center">
+                                                        <img src="assets/images/logos/bradesco.svg" class="img-fluid"
+                                                            alt="Bradesco">
+                                                        <span>Bradesco</span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-2 col-sm-4">
+                                            <div class="mb-3">
+                                                <label class="card-radio-label mb-2">
+                                                    <input type="radio" name="currency" id="santander"
+                                                        class="card-radio-input"
+                                                        (change)="onRadioChange(33,'Santander',false, false)">
+                                                    <div class="card-radio d-flex flex-column align-items-center">
+                                                        <img src="assets/images/logos/santander.svg" class="img-fluid"
+                                                            alt="Santander">
+                                                        <span>Santander</span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-2 col-sm-4">
+                                            <div class="mb-3">
+                                                <label class="card-radio-label mb-2">
+                                                    <input type="radio" name="currency" id="bancobrasil"
+                                                        class="card-radio-input"
+                                                        (change)="onRadioChange(001,'Banco do Brasil',false, false)">
+                                                    <div class="card-radio d-flex flex-column align-items-center">
+                                                        <img src="assets/images/logos/bancobrasil.svg" class="img-fluid"
+                                                            alt="BB">
+                                                        <span>Banco do Brasil</span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 col-sm-4">
+                                            <div class="mb-3">
+                                                <label class="card-radio-label mb-2">
+                                                    <input type="radio" name="currency" id="outro"
+                                                        class="card-radio-input"
+                                                        (change)="onRadioChange(0, '', true, false)">
+
+                                                    <div class="card-radio d-flex flex-column align-items-center">
+                                                        <img src="assets/images/logos/bank.png" class="img-fluid"
+                                                            alt="Outro">
+                                                        <span>Outro</span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="row" [hidden]="isPinbank">
+                                            <div class="col-lg-8">
+                                                <div class="mt-4 mb-0">
+                                                    <h2 class="text-success">Ao informar a Pinbank você tem algumas
+                                                        vantagens!!! Ganhe 1% de desconto no valor da parcela</h2>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="p-2 border">
+                                            <div class="row" [hidden]="isOtherSelected">
+                                                <div class="col-lg-8">
+                                                    <div class="mt-4 mb-0">
+                                                        <label for="cardnameInput">Banco</label>
+                                                        <select class="form-select" id="bankSelect"
+                                                            (change)="onSelectChange($event)">
+                                                            <option value="587">Nubank</option>
+                                                            <option value="104">Caixa Econômica Federal</option>
+                                                            <option value="399">HSBC Bank Brasil</option>
+                                                            <option value="748">Sicredi</option>
+                                                            <option value="745">Banco Citibank</option>
+                                                            <option value="077">Banco Inter</option>
+                                                            <option value="212">Banco Original</option>
+                                                            <option value="042">C6</option>
+                                                            <option value="136">Unicred</option>
+                                                            <option value="077">Banco Bari</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-2">
+                                                    <div class="mt-4 mb-0">
+                                                        <label for="agencia">Agência<span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" id="agencia"
+                                                            [mask]="'000'" formControlName="agencia"
+                                                            [ngClass]="{'is-invalid': submit && form.agencia.errors}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-1">
+                                                    <div class="mt-4 mb-0">
+                                                        <label for="agenciaDigito">Dígito<span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" id="agenciaDigito"
+                                                            [mask]="'0'" formControlName="agenciaDigito"
+                                                            [ngClass]="{'is-invalid': submit && form.agenciaDigito.errors}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    <div class="mt-4 mb-0">
+                                                        <label for="contaCorrente">Conta Corrente<span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" id="contaCorrente"
+                                                            [mask]="'00000'" formControlName="contaCorrente"
+                                                            [ngClass]="{'is-invalid': submit && form.contaCorrente.errors}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-1">
+                                                    <div class="mt-4 mb-0">
+                                                        <label for="contaCorrenteDigito">Dígito<span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" id="contaCorrenteDigito"
+                                                            [mask]="'0'" formControlName="contaCorrenteDigito"
+                                                            [ngClass]="{'is-invalid': submit && form.contaCorrenteDigito.errors}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    <div class="mt-4 mb-0">
+                                                        <label for="tipoChavePix">Tipo Chave Pix<span
+                                                                class="text-danger">*</span></label>
+                                                        <select class="form-select" id="tipoChavePix"
+                                                            formControlName="tipoChavePix"
+                                                            [ngClass]="{'is-invalid': submit && form.tipoChavePix.errors}">
+                                                            <option value="1">Telefone</option>
+                                                            <option value="2">Email</option>
+                                                            <option value="3">CPF/CNPJ</option>
+                                                            <option value="4">Aleatório</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="mt-4 mb-0">
+                                                        <label for="chavePix">Chave Pix<span
+                                                                class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control" id="chavePix"
+                                                            formControlName="chavePix"
+                                                            [ngClass]="{'is-invalid': submit && form.chavePix.errors}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row my-4">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-4">
+                                    <a routerLink="/emprestimo/simular"
+                                        class="btn text-muted d-none d-sm-inline-block btn-link">
+                                        <i class="mdi mdi-arrow-left me-1"></i> Voltar para a simulação </a>
+                                </div> <!-- end col -->
+                                <div class="col-sm-6">
+                                    <div class="text-sm-end">
+                                        <a class="btn btn-success" (click)="prosseguir();">
+                                            <i class="mdi mdi-cash-check me-1"></i> Prosseguir </a>
+                                    </div>
+                                </div> <!-- end col -->
+                            </div>
+                        </tab>
+                        <tab [id]="'confirmacao'" [disabled]="!activeConfirmacao" (selectTab)="activeConfirmacao"
+                            [active]="activeConfirmacao">
+                            <ng-template tabHeading>
+                                <i class="bx bx-badge-check d-block check-nav-icon mt-4 mb-2"></i>
+                                <p class="fw-bold mb-4">Confirmação</p>
+                            </ng-template>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="invoice-title">
+                                        <h4 class="float-end font-size-16">Resumo do Empréstimo</h4>
+                                        <div class="auth-logo mb-4">
+                                            <i class="mdi mdi-clipboard-outline bx-sm"></i>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <address>
+                                                <i class="mdi mdi-cash-usd mr-1"></i><strong
+                                                    class="ms-1">Valores:</strong><br>
+                                                <span class="fs-2 font-weight-bold text-success">{{
+                                                    formatarComoReal(emprestimo.valor) }}</span>
+                                                em <span class="fs-5 font-weight-bold">{{emprestimo.parcelas }}x</span>
+                                                de
+                                                <span
+                                                    class="fs-2 font-weight-bold text-success">{{formatarComoReal(emprestimo.valorParcela)}}</span><br>
+                                                <span class="fs-5 font-weight-bold text-danger">Taxa:
+                                                    {{emprestimo.taxaAoMes}}% a.m</span>
+                                            </address>
+                                        </div>
+                                        <div class="col-6 text-sm-end">
+                                            <address>
+                                                <i class="mdi mdi-account mr-1"></i><strong class="ms-1">Contratado
+                                                    por:</strong><br>
+                                                {{funcionario.nome}}<br>
+                                                CPF: {{funcionario.cpf}}<br>
+                                                RG: {{funcionario.rg}}<br>
+                                                Data Nascimento: {{ funcionario.dataNascimento | date: 'dd/MM/yyyy' }}
+                                            </address>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6 mt-3">
+                                            <address>
+                                                <i class="mdi mdi-bank mr-1"></i><strong class="ms-1">Informações
+                                                    Bancarias:</strong><br>
+                                                Banco: {{emprestimo.banco }}<br>
+                                                Agência: {{emprestimo.agencia}}-{{emprestimo.digitoAgencia}}<br>
+                                                Conta Corrente: {{emprestimo.contaCorrente}}<br>
+                                                Chave Pix: {{emprestimo.chavepix}}<br>
+                                            </address>
+                                        </div>
+                                        <div class="col-6 mt-3 text-sm-end">
+                                            <address>
+                                                <i class="mdi mdi-calendar mr-1"></i><strong
+                                                    class="ms-1">Data:</strong><br>
+                                                {{ today | date: 'dd/MM/yyyy' }}<br><br>
+                                            </address>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-5">
+                                        <div class="col-12">
+                                            <label for="email">Email<span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="email"
+                                                placeholder="Informe o e-mail para receber o contrato"
+                                                formControlName="email"
+                                                [ngClass]="{'is-invalid': submit && form.email.errors}">
+
+                                            <label for="confirmaremail">Confirmar o Email<span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" id="confirmaremail"
+                                                placeholder="Confirme o email"
+                                                formControlName="confirmaremail"
+                                                [ngClass]="{'is-invalid': submit && form.confirmaremail.errors}">
+                                                
+                                                <div *ngIf="form.confirmaremail.errors?.emailNaoCoincide">
+                                                    <span class="text-danger">Os emails não coincidem.</span>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row my-4">
+
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-4">
+                                    <a class="btn text-muted d-none d-sm-inline-block btn-link"
+                                        (click)="voltarInfoBancaria()">
+                                        <i class="mdi mdi-arrow-left me-1"></i> Voltar para informações bancarias </a>
+                                </div> <!-- end col -->
+                                <div class="col-sm-6">
+                                    <div class="text-sm-end">
+                                        <a class="btn btn-success" (click)="contratarEmprestimo()">
+                                            <i class="mdi mdi-check-outline me-1"></i> Contratar </a>
+                                    </div>
+                                </div> <!-- end col -->
+                            </div>
+                        </tab>
+                    </tabset>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

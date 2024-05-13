@@ -1,0 +1,187 @@
+<div class="container-fluid">
+    <app-page-title title="Dashboard" [breadcrumbItems]="breadCrumbItems"></app-page-title>
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="avatar-xs me-3">
+                                    <span
+                                        class="avatar-title rounded-circle bg-primary-subtle text-primary font-size-18">
+                                        <i class="bx bx-copy-alt"></i>
+                                    </span>
+                                </div>
+                                <h5 class="font-size-14 mb-0">Quantidade Empréstimos</h5>
+                            </div>
+                            <div class="text-muted mt-4">
+                                <h4>10 <i class="mdi mdi-chevron-up ms-1 text-success"></i></h4>
+                                <div class="d-flex">
+                                    <span class="badge badge-soft-success font-size-12"> + 0.2% </span> <span
+                                        class="ms-2 text-truncate">Que o mês passado</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="avatar-xs me-3">
+                                    <span
+                                        class="avatar-title rounded-circle bg-primary-subtle text-primary font-size-18">
+                                        <i class="bx bx-money"></i>
+                                    </span>
+                                </div>
+                                <h5 class="font-size-14 mb-0">Total Empréstimos</h5>
+                            </div>
+                            <div class="text-muted mt-4">
+                                <h4>R$ 80.000 <i class="mdi mdi-chevron-up ms-1 text-success"></i></h4>
+                                <div class="d-flex">
+                                    <span class="badge badge-soft-success font-size-12"> + 0.2% </span> <span
+                                        class="ms-2 text-truncate">Que o mês passado</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="avatar-xs me-3">
+                                    <span
+                                        class="avatar-title rounded-circle bg-primary-subtle text-primary font-size-18">
+                                        <i class="bx bx-purchase-tag-alt"></i>
+                                    </span>
+                                </div>
+                                <h5 class="font-size-14 mb-0">Ticket médio</h5>
+                            </div>
+                            <div class="text-muted mt-4">
+                                <h4>R$ 1.500</h4>
+
+                                <div class="d-flex">
+                                    <span class="badge badge-soft-warning font-size-12"> 0% </span> <span
+                                        class="ms-2 text-truncate">Que o mês passado</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+            <div class="row">
+                <div class="col-xl-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="clearfix">
+                                <h4 class="card-title mb-4">Ganho</h4>
+                            </div>
+
+                            @for (item of sassEarning; track $index) {
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="text-muted">
+                                        <div class="mb-4">
+                                            <p>{{item.name}}</p>
+                                            <h4>{{ item.amount }}</h4>
+                                            <div><span class="badge badge-soft-success font-size-12 me-1"> + {{
+                                                    item.revenue }}%
+                                                </span> {{ item.time }}</div>
+                                        </div>
+
+                                        <div>
+                                            <a href="javascript: void(0);" class="btn btn-primary btn-sm">Ver detalhes
+                                                <i class="mdi mdi-chevron-right ms-1"></i></a>
+                                        </div>
+
+                                        <div class="mt-4">
+                                            <p class="mb-2">{{ item.month }}</p>
+                                            <h5>{{ item.previousamount }}</h5>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-8">
+                                    <apx-chart class="apex-charts" dir="ltr" [series]="item.series"
+                                        [chart]="earningLineChart.chart" [colors]="earningLineChart.colors"
+                                        [stroke]="earningLineChart.stroke" [dataLabels]="earningLineChart.dataLabels">
+                                    </apx-chart>
+                                </div>
+                            </div>}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Por Range</h4>
+
+                            <div>
+                                <apx-chart class="apex-charts" dir="ltr" [series]="salesAnalyticsDonutChart.series"
+                                    [chart]="salesAnalyticsDonutChart.chart" [colors]="salesAnalyticsDonutChart.colors"
+                                    [plotOptions]="salesAnalyticsDonutChart.plotOptions"
+                                    [legend]="salesAnalyticsDonutChart.legend"
+                                    [labels]="salesAnalyticsDonutChart.labels">
+                                </apx-chart>
+                            </div>
+
+                            <div class="text-center text-muted">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="mt-4">
+                                            <p class="mb-2 text-truncate"><i
+                                                    class="mdi mdi-circle text-primary me-1"></i>
+                                                > R$50.000</p>
+                                            <h5>4</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mt-4">
+                                            <p class="mb-2 text-truncate"><i
+                                                    class="mdi mdi-circle text-success me-1"></i>
+                                                R$20.000 até R$49.999</p>
+                                            <h5>3</h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mt-4">
+                                            <p class="mb-2 text-truncate"><i
+                                                    class="mdi mdi-circle text-danger me-1"></i>
+                                               < R$20.000</p>
+                                            <h5>2</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+            <div class="row">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-sm-flex flex-wrap">
+                            <h4 class="card-title mb-4">Empréstimos</h4>
+                            <div class="ms-auto">                              
+                            </div>
+                        </div>
+                        <apx-chart dir="ltr" class="apex-charts" [chart]="emailSentBarChart.chart"
+                            [series]="emailSentBarChart.series" [legend]="emailSentBarChart.legend"
+                            [colors]="emailSentBarChart.colors" [fill]="emailSentBarChart.fill"
+                            [dataLabels]="emailSentBarChart.dataLabels" [xaxis]="emailSentBarChart.xaxis"
+                            [plotOptions]="emailSentBarChart.plotOptions">
+                        </apx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
